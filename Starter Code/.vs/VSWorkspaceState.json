@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\artifacts",
+    "\\artifacts\\contracts",
+    "\\artifacts\\contracts\\mycontract.sol",
+    "\\artifacts\\hardhat",
+    "\\artifacts\\hardhat\\console.sol",
+    "\\contracts",
+    "\\scripts",
+    "\\web_app"
+  ],
+  "SelectedNode": "\\web_app\\script.js",
+  "PreviewInSolutionExplorer": false
+}

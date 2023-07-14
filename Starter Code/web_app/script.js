@@ -309,7 +309,7 @@ async function getAllFunctionCalls(addressOfContract, functionName) {
 
 	  	// check that destination of txn is our contract
 			if(txn.to == null){continue;}
-	  	if (txn.to.toLowerCase() === addressOfContract.toLowerCase()) {
+	  	if (txn.to === addressOfContract) {
 	  		var func_call = abiDecoder.decodeMethod(txn.data);
 
 				// check that the function getting called in this txn is 'functionName'
@@ -317,7 +317,7 @@ async function getAllFunctionCalls(addressOfContract, functionName) {
 					var timeBlock = await provider.getBlock(curBlock);
 		  		var args = func_call.params.map(function (x) {return x.value});
 	  			function_calls.push({
-	  				from: txn.from.toLowerCase(),
+	  				from: txn.from,
 	  				args: args,
 						t: timeBlock.timestamp
 	  			})
@@ -337,7 +337,7 @@ async function doBFS(start, end, getNeighbors) {
 	while (queue.length > 0) {
 		var cur = queue.shift();
 		var lastNode = cur[cur.length-1]
-		if (lastNode.toLowerCase() === end.toString().toLowerCase()) {
+		if (lastNode === end.toString()) {
 			return cur;
 		} else {
 			var neighbors = await getNeighbors(lastNode);
@@ -385,9 +385,9 @@ $("#myaccount").change(function() {
 // Allows switching between accounts in 'My Account' and the 'fast-copy' in 'Address of person you owe
 provider.listAccounts().then((response)=>{
 	var opts = response.map(function (a) { return '<option value="'+
-			a.toLowerCase()+'">'+a.toLowerCase()+'</option>' });
+			a+'">'+a+'</option>' });
 	$(".account").html(opts);
-	$(".wallet_addresses").html(response.map(function (a) { return '<li>'+a.toLowerCase()+'</li>' }));
+	$(".wallet_addresses").html(response.map(function (a) { return '<li>'+a+'</li>' }));
 });
 
 // This code updates the 'Users' list in the UI with the results of your function
